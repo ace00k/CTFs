@@ -14,14 +14,12 @@ ctrl_c(){
 
 smbServer(){
 
-  for file in $(ls $smbPath); do 
-      if [ $file = "nc.exe" ]; then
-        echo -e "\n[+] Nc.exe exists, skipping"
-        break
-      else echo -e "\n[!] Nc.exe doesn't exists on this folder!!!\n"; echo -e "Exiting..."; sleep 0.5; exit 1
-        fi
-      done
+  if test -f $smbPath; then
 
+    echo -e "\n[!] nc.exe, doesn't exists, exiting...\n"; sleep 0.5
+  else 
+    echo -e "\n[*] Done, nc.exe exists, skipping\n"; sleep 0.5
+  fi
   lsof -i:445 &>/dev/null
   statusCode="$?"
   if [ $statusCode -ne 0 ]; then
